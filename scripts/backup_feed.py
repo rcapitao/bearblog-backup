@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""Fetch the bearblog.dev RSS feed and save each post under posts/."""
+"""Fetch the bearblog.dev Atom feed and save each post under posts/."""
 import re
 import sys
 import urllib.request
 import xml.etree.ElementTree as ET
-from email.utils import parsedate_to_datetime
+from datetime import datetime
 from pathlib import Path
 
 FEED_URL = "https://rcapitao.com/feed/"
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "posts"
 
-NAMESPACES = {"content": "http://purl.org/rss/1.0/modules/content/"}
+ATOM_NS = "http://www.w3.org/2005/Atom"
+NAMESPACES = {"atom": ATOM_NS}
 
 
 def sanitize_filename(value: str) -> str:
@@ -27,32 +28,32 @@ def fetch_feed(url: str) -> bytes:
 
 def parse_items(xml_bytes: bytes):
     root = ET.fromstring(xml_bytes)
-    for item in root.findall("./channel/item"):
-        title = (item.findtext("title") or "Untitled").strip()
-        link = (item.findtext("link") or "").strip()
-        pub_date = (item.findtext("pubDate") or "").strip()
-        guid = (item.findtext("guid") or link).strip()
-        description = (item.findtext("description") or "").strip()
-        content_encoded = (item.findtext("content:encoded", namespaces=NAMESPACES) or "").strip()
-        body = content_encoded or description
+    for entry in root.findall("atom:entry", NAMESPACES):
+        title = (entry.findtext("atom:title", namespaces=NAMESPACES) or "Untitled").strip()
+        updated = (entry.findtext("atom:updated", namespaces=NAMESPACES) or "").strip()
+        guid = (entry.findtext("atom:id", namespaces=NAMESPACES) or "").strip()
+        link_el = entry.find("atom:link", NAMESPACES)
+        link = link_el.get("href", "").strip() if link_el is not None else guid
+        content_el = entry.find("atom:content", NAMESPACES)
+        body = (content_el.text or "").strip() if content_el is not None else ""
         yield {
             "title": title,
             "link": link,
-            "pub_date": pub_date,
+            "updated": updated,
             "guid": guid,
             "body": body,
         }
 
 
-def format_date(pub_date: str) -> str:
+def format_date(updated: str) -> str:
     try:
-        return parsedate_to_datetime(pub_date).strftime("%Y-%m-%d")
-    except (TypeError, ValueError):
+        return datetime.fromisoformat(updated).strftime("%Y-%m-%d")
+    except ValueError:
         return "unknown-date"
 
 
 def write_post(item: dict) -> None:
-    date = format_date(item["pub_date"])
+    date = format_date(item["updated"])
     name = sanitize_filename(item["title"])
     file_path = OUTPUT_DIR / f"{date} - {name}.md"
     frontmatter = (
@@ -60,7 +61,7 @@ def write_post(item: dict) -> None:
         f"title: {item['title']}\n"
         f"link: {item['link']}\n"
         f"guid: {item['guid']}\n"
-        f"date: {item['pub_date']}\n"
+        f"date: {item['updated']}\n"
         "---\n\n"
     )
     file_path.write_text(frontmatter + item["body"] + "\n", encoding="utf-8")
@@ -77,7 +78,6 @@ def main() -> int:
     items = list(parse_items(xml_bytes))
     if not items:
         print("No items found in feed", file=sys.stderr)
-        print(xml_bytes[:2000].decode("utf-8", errors="replace"), file=sys.stderr)
         return 1
 
     for item in items:
