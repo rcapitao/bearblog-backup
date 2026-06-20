@@ -16,6 +16,7 @@ NAMESPACES = {"atom": ATOM_NS}
 
 IMG_SRC_RE = re.compile(r'<img[^>]+src="([^"]+)"')
 OG_IMAGE_RE = re.compile(r'<meta\s+property="og:image"\s+content="([^"]*)"')
+REPLY_FOOTER_RE = re.compile(r'<div class="reply-email">.*', re.DOTALL)
 
 
 def sanitize_filename(value: str) -> str:
@@ -98,7 +99,9 @@ def write_post(item: dict, post_dir: Path) -> None:
         f"meta_image: {item['meta_image']}\n"
         "---\n\n"
     )
-    (post_dir / "post.md").write_text(frontmatter + item["body"] + "\n", encoding="utf-8")
+    body = REPLY_FOOTER_RE.sub("", item["body"]).rstrip()
+    name = sanitize_filename(item["title"])
+    (post_dir / f"{name}.md").write_text(frontmatter + body + "\n", encoding="utf-8")
 
 
 def process_item(item: dict) -> None:
