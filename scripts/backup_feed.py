@@ -73,7 +73,7 @@ def format_date(updated: str) -> str:
 
 def download_image(url: str, post_dir: Path) -> None:
     filename = sanitize_filename(Path(urllib.parse.urlparse(url).path).name)
-    if not filename:
+    if not filename or filename == "og-image.png":
         return
     file_path = post_dir / filename
     if file_path.exists():
