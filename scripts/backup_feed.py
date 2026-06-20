@@ -1,22 +1,21 @@
 #!/usr/bin/env python3
-"""Fetch the bearblog.dev RSS feed and save each post as a Markdown file."""
+"""Fetch the bearblog.dev RSS feed and save each post under bearblog-backup/."""
 import re
 import sys
-import unicodedata
 import urllib.request
 import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 FEED_URL = "https://rcapitao.com/feed/"
-OUTPUT_DIR = Path(__file__).resolve().parent.parent / "posts"
+OUTPUT_DIR = Path(__file__).resolve().parent.parent / "bearblog-backup"
 
 NAMESPACES = {"content": "http://purl.org/rss/1.0/modules/content/"}
 
 
-def slugify(value: str) -> str:
-    value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
-    value = re.sub(r"[^\w\s-]", "", value).strip().lower()
-    value = re.sub(r"[-\s]+", "-", value)
+def sanitize_filename(value: str) -> str:
+    value = value.strip()
+    value = re.sub(r'[\\/:*?"<>|]', "-", value)
     return value or "untitled"
 
 
@@ -45,9 +44,19 @@ def parse_items(xml_bytes: bytes):
         }
 
 
+def format_date(pub_date: str) -> str:
+    try:
+        return parsedate_to_datetime(pub_date).strftime("%Y-%m-%d")
+    except (TypeError, ValueError):
+        return "unknown-date"
+
+
 def write_post(item: dict) -> None:
-    slug = slugify(item["title"])
-    file_path = OUTPUT_DIR / f"{slug}.md"
+    date = format_date(item["pub_date"])
+    name = sanitize_filename(item["title"])
+    post_dir = OUTPUT_DIR / f"{date} - {name}"
+    post_dir.mkdir(parents=True, exist_ok=True)
+    file_path = post_dir / "post.md"
     frontmatter = (
         "---\n"
         f"title: {item['title']}\n"
