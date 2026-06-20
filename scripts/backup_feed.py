@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch the bearblog.dev RSS feed and save each post under bearblog-backup/."""
+"""Fetch the bearblog.dev RSS feed and save each post under posts/."""
 import re
 import sys
 import urllib.request
@@ -8,7 +8,7 @@ from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 FEED_URL = "https://rcapitao.com/feed/"
-OUTPUT_DIR = Path(__file__).resolve().parent.parent / "bearblog-backup"
+OUTPUT_DIR = Path(__file__).resolve().parent.parent / "posts"
 
 NAMESPACES = {"content": "http://purl.org/rss/1.0/modules/content/"}
 
@@ -54,9 +54,7 @@ def format_date(pub_date: str) -> str:
 def write_post(item: dict) -> None:
     date = format_date(item["pub_date"])
     name = sanitize_filename(item["title"])
-    post_dir = OUTPUT_DIR / f"{date} - {name}"
-    post_dir.mkdir(parents=True, exist_ok=True)
-    file_path = post_dir / "post.md"
+    file_path = OUTPUT_DIR / f"{date} - {name}.md"
     frontmatter = (
         "---\n"
         f"title: {item['title']}\n"
