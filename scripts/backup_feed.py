@@ -71,9 +71,9 @@ def format_date(updated: str) -> str:
         return "unknown-date"
 
 
-def download_image(url: str, post_dir: Path) -> None:
+def download_image(url: str, post_dir: Path, skip_default_og: bool = True) -> None:
     filename = sanitize_filename(Path(urllib.parse.urlparse(url).path).name)
-    if not filename or filename == "og-image.png":
+    if not filename or (skip_default_og and filename == "og-image.png"):
         return
     file_path = post_dir / filename
     if file_path.exists():
@@ -110,7 +110,7 @@ def process_item(item: dict) -> None:
     for image_url in IMG_SRC_RE.findall(item["body"]):
         download_image(image_url, post_dir)
     if item["meta_image"]:
-        download_image(item["meta_image"], post_dir)
+        download_image(item["meta_image"], post_dir, skip_default_og=False)
 
     write_post(item, post_dir)
 
