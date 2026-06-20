@@ -35,6 +35,7 @@ def parse_items(xml_bytes: bytes):
     for entry in root.findall("atom:entry", NAMESPACES):
         title = (entry.findtext("atom:title", namespaces=NAMESPACES) or "Untitled").strip()
         updated = (entry.findtext("atom:updated", namespaces=NAMESPACES) or "").strip()
+        published = (entry.findtext("atom:published", namespaces=NAMESPACES) or updated).strip()
         guid = (entry.findtext("atom:id", namespaces=NAMESPACES) or "").strip()
         summary = (entry.findtext("atom:summary", namespaces=NAMESPACES) or "").strip()
         link_el = entry.find("atom:link", NAMESPACES)
@@ -46,6 +47,7 @@ def parse_items(xml_bytes: bytes):
             "title": title,
             "link": link,
             "updated": updated,
+            "published": published,
             "guid": guid,
             "body": body,
             "tags": tags,
@@ -71,9 +73,9 @@ def format_date(updated: str) -> str:
         return "unknown-date"
 
 
-def download_image(url: str, post_dir: Path, skip_default_og: bool = True) -> None:
+def download_image(url: str, post_dir: Path) -> None:
     filename = sanitize_filename(Path(urllib.parse.urlparse(url).path).name)
-    if not filename or (skip_default_og and filename == "og-image.png"):
+    if not filename or filename == "og-image.png":
         return
     file_path = post_dir / filename
     if file_path.exists():
@@ -100,7 +102,7 @@ def write_post(item: dict, post_dir: Path) -> None:
 
 
 def process_item(item: dict) -> None:
-    date = format_date(item["updated"])
+    date = format_date(item["published"])
     name = sanitize_filename(item["title"])
     post_dir = OUTPUT_DIR / f"{date} - {name}"
     post_dir.mkdir(parents=True, exist_ok=True)
@@ -110,7 +112,7 @@ def process_item(item: dict) -> None:
     for image_url in IMG_SRC_RE.findall(item["body"]):
         download_image(image_url, post_dir)
     if item["meta_image"]:
-        download_image(item["meta_image"], post_dir, skip_default_og=False)
+        download_image(item["meta_image"], post_dir)
 
     write_post(item, post_dir)
 
