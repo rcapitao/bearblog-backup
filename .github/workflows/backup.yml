@@ -21,7 +21,7 @@ jobs:
           python-version: "3.12"
 
       - name: Run backup script
-        run: python3 scripts/backup_feed.py
+        run: python3 scripts/debug_inspect.py
 
       - name: Commit and push changes
         run: |
