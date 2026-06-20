@@ -77,6 +77,7 @@ def main() -> int:
     items = list(parse_items(xml_bytes))
     if not items:
         print("No items found in feed", file=sys.stderr)
+        print(xml_bytes[:2000].decode("utf-8", errors="replace"), file=sys.stderr)
         return 1
 
     for item in items:
