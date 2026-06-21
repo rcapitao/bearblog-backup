@@ -27,6 +27,15 @@ Automação que faz o backup diário dos posts do [Bear Blog](https://bearblog.d
 - A automação **nunca remove** posts antigos: ela apenas cria ou atualiza os arquivos dos 10 posts presentes no feed a cada execução. Posts que saem do feed permanecem intactos em `posts/`, então o backup vai acumulando ao longo do tempo.
 - Ao final, as mudanças são commitadas e enviadas automaticamente para a branch `main` do repositório.
 
+## Backup do CSS do site
+
+Além dos posts, uma segunda automação faz o backup mensal do CSS personalizado do site:
+
+- Roda automaticamente no dia 1 de cada mês (00:00 UTC) via GitHub Actions.
+- Busca a página inicial (`https://rcapitao.com/`) e extrai o conteúdo de todas as tags `<style>` encontradas no HTML.
+- Salva o resultado em `css/style.css`, sobrescrevendo a versão anterior.
+- As mudanças são commitadas e enviadas automaticamente para a branch `main` do repositório.
+
 ## Limitação e como ter o backup completo
 
 Como o feed do Bear Blog só lista os 10 posts mais recentes, a automação não tem acesso ao histórico completo do blog — apenas aos últimos posts publicados.
