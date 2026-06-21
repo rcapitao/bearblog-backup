@@ -1,7 +1,7 @@
 ---
 title: LinkedIn realiza varreduras secretas no Chrome
 link: https://rcapitao.com/linkedin-realiza-varreduras-secretas-no-chrome/
-date: 2026-06-18T23:13:16.015379+00:00
+date: 2026-06-21T01:54:11.826397+00:00
 tags: privacidade, privacy-rocks
 meta_description: O LinkedIn foi acusado de escanear silenciosamente extensões do Google Chrome, revelando preocupações sobre privacidade que podem ser evitadas ao usar navegadores alternativos.
 meta_image: https://rcapitao.com/static/og-image.png

@@ -1,7 +1,7 @@
 ---
 title: Auditoria de privacidade não é ameaça
 link: https://rcapitao.com/auditoria-de-privacidade-nao-e-ameaca/
-date: 2026-06-18T23:49:05.671859+00:00
+date: 2026-06-21T01:53:04.517593+00:00
 tags: privacy-rocks
 meta_description: Um programa de privacidade eficaz requer auditorias regulares para garantir que os controles documentados sejam aplicados na prática e que as conformidades sejam verdadeiramente evidenciadas.
 meta_image: https://rcapitao.com/static/og-image.png

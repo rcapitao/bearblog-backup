@@ -1,7 +1,7 @@
 ---
 title: Produtividade com GTD - Um método que transforma minha rotina
 link: https://rcapitao.com/produtividade-com-gtd-um-metodo-que-transforma-minha-rotina/
-date: 2026-06-18T23:48:34.170517+00:00
+date: 2026-06-21T01:52:46.134544+00:00
 tags: produtividade
 meta_description: A aplicação dos métodos GTD e BASB tem sido essencial para otimizar a produtividade e a organização pessoal e profissional, proporcionando controle e clareza nas tarefas.
 meta_image: https://rcapitao.com/static/og-image.png

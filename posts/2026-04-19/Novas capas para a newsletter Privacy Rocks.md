@@ -1,7 +1,7 @@
 ---
 title: Novas capas para a newsletter Privacy Rocks
 link: https://rcapitao.com/novas-capas-para-a-newsletter-privacy-rocks/
-date: 2026-06-18T22:59:00.062440+00:00
+date: 2026-06-21T01:53:12.039676+00:00
 tags: privacy-rocks
 meta_description: A Privacy Rocks deixou de usar uma capa genérica e repetitiva. Veja como ficou a nova versão, criada especialmente para a próxima edição.
 meta_image: https://rcapitao.com/static/og-image.png

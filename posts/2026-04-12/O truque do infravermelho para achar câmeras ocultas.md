@@ -1,7 +1,7 @@
 ---
 title: O truque do infravermelho para achar câmeras ocultas
 link: https://rcapitao.com/o-truque-do-infravermelho-para-achar-cameras-ocultas/
-date: 2026-06-18T23:48:41.670081+00:00
+date: 2026-06-21T01:52:51.323007+00:00
 tags: dicas, privacidade, privacy-rocks
 meta_description: Seu celular detecta câmeras escondidas sem nenhum app. Saiba como usar o sensor de infravermelho para proteger sua privacidade em hotéis e Airbnbs.
 meta_image: https://rcapitao.com/static/og-image.png

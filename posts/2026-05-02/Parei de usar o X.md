@@ -1,7 +1,7 @@
 ---
 title: Parei de usar o X
 link: https://rcapitao.com/parei-de-usar-o-x/
-date: 2026-06-18T23:03:53.777987+00:00
+date: 2026-06-21T01:53:38.124587+00:00
 tags: notas
 meta_description: Decidi sair do X após anos de falta de transparência sobre dados. Veja os motivos e onde continuar me acompanhando a partir de agora.
 meta_image: https://rcapitao.com/static/og-image.png
