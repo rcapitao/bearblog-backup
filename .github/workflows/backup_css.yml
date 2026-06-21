@@ -2,7 +2,7 @@ name: Backup site CSS
 
 on:
   schedule:
-    - cron: "0 0 1 * *"
+    - cron: "0 0 1,16 * *"
   workflow_dispatch: {}
 
 permissions:
