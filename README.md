@@ -24,6 +24,7 @@ Automação que faz o backup diário dos posts do [Bear Blog](https://bearblog.d
   - `meta_description`
   - `meta_image`
 - Imagens usadas no corpo do post e a imagem indicada em `meta_image` são baixadas e salvas junto com o markdown na pasta do post (exceto a imagem padrão do site, `og-image.png`, que não é baixada).
+- A automação **nunca remove** posts antigos: ela apenas cria ou atualiza os arquivos dos 10 posts presentes no feed a cada execução. Posts que saem do feed permanecem intactos em `posts/`, então o backup vai acumulando ao longo do tempo.
 - Ao final, as mudanças são commitadas e enviadas automaticamente para a branch `main` do repositório.
 
 ## Limitação e como ter o backup completo
