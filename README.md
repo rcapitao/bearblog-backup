@@ -6,16 +6,16 @@ Automação que faz o backup diário dos posts do [Bear Blog](https://bearblog.d
 
 - Roda automaticamente todos os dias à 00:00 (UTC) via GitHub Actions.
 - O feed do Bear Blog traz sempre os 10 posts mais recentes, então a cada execução são salvos/atualizados os 10 últimos posts publicados.
-- Cada post é salvo em sua própria pasta dentro de `posts/`, no formato:
+- Cada post é salvo em uma pasta dentro de `posts/`, nomeada apenas com a data de **publicação** do post no formato `AAAA-MM-DD`. O arquivo Markdown leva o título do post como nome:
 
   ```
-  posts/AAAA-MM-DD - Título do post/
+  posts/AAAA-MM-DD/
   ├── Título do post.md
   ├── imagem-do-post.webp   (se houver imagens no corpo do post)
   └── imagem-meta.jpg       (imagem usada como meta_image)
   ```
 
-- A data da pasta é a data de **publicação** do post.
+- Se houver mais de uma publicação no mesmo dia, todas ficam na mesma pasta da data, cada uma com seu próprio arquivo Markdown (nomeado pelo título) e suas respectivas imagens.
 - O arquivo Markdown contém o conteúdo do post e um frontmatter com:
   - `title`
   - `link`
