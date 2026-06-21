@@ -29,11 +29,12 @@ Automação que faz o backup diário dos posts do [Bear Blog](https://bearblog.d
 
 ## Backup do CSS do site
 
-Além dos posts, uma segunda automação faz o backup mensal do CSS personalizado do site:
+Além dos posts, uma segunda automação faz o backup periódico do CSS personalizado do site:
 
-- Roda automaticamente no dia 1 de cada mês (00:00 UTC) via GitHub Actions.
+- Roda automaticamente a cada 15 dias (dias 1 e 16 do mês, 00:00 UTC) via GitHub Actions.
 - Busca a página inicial (`https://rcapitao.com/`) e extrai o conteúdo de todas as tags `<style>` encontradas no HTML.
-- Salva o resultado em `css/style.css`, sobrescrevendo a versão anterior.
+- Salva o resultado em `css/style-AAAA-MM-DD.css`, usando a data da execução.
+- Mantém apenas as 3 versões mais recentes: a cada execução, o arquivo mais antigo é removido, substituído pela versão mais nova.
 - As mudanças são commitadas e enviadas automaticamente para a branch `main` do repositório.
 
 ## Limitação e como ter o backup completo
