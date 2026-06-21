@@ -106,8 +106,7 @@ def write_post(item: dict, post_dir: Path) -> None:
 
 def process_item(item: dict) -> None:
     date = format_date(item["published"])
-    name = sanitize_filename(item["title"])
-    post_dir = OUTPUT_DIR / f"{date} - {name}"
+    post_dir = OUTPUT_DIR / date
     post_dir.mkdir(parents=True, exist_ok=True)
 
     item["meta_image"] = fetch_meta_image(item["link"])
