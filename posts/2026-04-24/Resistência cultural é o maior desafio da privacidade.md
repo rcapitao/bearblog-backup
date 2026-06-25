@@ -1,10 +1,10 @@
 ---
 title: Resistência cultural é o maior desafio da privacidade
 link: https://rcapitao.com/resistencia-cultural-e-o-maior-desafio-da-privacidade/
-date: 2026-06-21T01:53:17.768766+00:00
+date: 2026-06-24T15:27:12.317737+00:00
 tags: privacy-rocks
 meta_description: Frases como "sempre foi assim" mostram como a resistência cultural ameaça programas de privacidade mais que qualquer lacuna técnica ou jurídica.
-meta_image: https://rcapitao.com/static/og-image.png
+meta_image: https://bear-images.sfo2.cdn.digitaloceanspaces.com/rcapitao/rafael-capitao.webp
 ---
 
 <p>Depois de anos trabalhando na implementação e na gestão de programas de privacidade em setores como saúde, telecomunicações e varejo, aprendi uma lição que nenhum framework técnico ensina: o desafio jurídico e tecnológico é, em muitos casos, mais simples de resolver do que o desafio cultural.</p>

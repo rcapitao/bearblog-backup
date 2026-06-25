@@ -1,7 +1,7 @@
 ---
 title: Nada a esconder, tudo a proteger
 link: https://rcapitao.com/nada-a-esconder-tudo-a-proteger/
-date: 2026-06-21T01:54:29.257135+00:00
+date: 2026-06-24T15:29:16.982084+00:00
 tags: dicas, privacidade, privacy-rocks
 meta_description: A privacidade física é importante e requer a destruição adequada de documentos que contenham dados pessoais para evitar riscos de roubo de identidade.
 meta_image: https://bear-images.sfo2.cdn.digitaloceanspaces.com/rcapitao/nada-a-esconder-tudo-a-proteger.webp

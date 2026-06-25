@@ -1,10 +1,10 @@
 ---
 title: Parei de usar o X
 link: https://rcapitao.com/parei-de-usar-o-x/
-date: 2026-06-21T01:53:38.124587+00:00
+date: 2026-06-24T15:41:45.384688+00:00
 tags: notas
 meta_description: Decidi sair do X após anos de falta de transparência sobre dados. Veja os motivos e onde continuar me acompanhando a partir de agora.
-meta_image: https://rcapitao.com/static/og-image.png
+meta_image: https://bear-images.sfo2.cdn.digitaloceanspaces.com/rcapitao/rafael-capitao.webp
 ---
 
 <p>Não foi uma decisão repentina. Foi o acúmulo de ausência de transparência sobre coleta e uso de dados, mudanças de política comunicadas de forma precária, e um ambiente que foi se tornando cada vez mais difícil de justificar para quem trabalha com privacidade.</p>
