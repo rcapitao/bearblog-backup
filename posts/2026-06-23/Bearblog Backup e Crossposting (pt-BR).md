@@ -1,7 +1,7 @@
 ---
 title: Bearblog Backup e Crossposting (pt-BR)
 link: https://rcapitao.com/bearblog-backup-crossposting-ptbr/
-date: 2026-06-23T22:07:51.482977+00:00
+date: 2026-06-26T10:20:12.990738+00:00
 tags: inteligencia-artificial, produtividade
 meta_description: Como usei o Claude para criar automações de backup e distribuição de conteúdo do meu blog, mesmo sem nunca ter programado antes.
 meta_image: https://bear-images.sfo2.cdn.digitaloceanspaces.com/rcapitao/bearblog-backup-e-crossposting-pt-br.webp
